@@ -1,0 +1,28 @@
+Package: shinyPCA
+Title: R Shiny Application for PCA
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Sarah",
+           family = "Bonnnin",
+           role = c("aut", "cre"),
+           email = "sarah.bonnin@crg.eu",
+           comment = structure("YOUR-ORCID-ID", .Names = "ORCID"))
+Description: Shiny application for the Principal Component Analysis
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+biocViews:
+Imports:
+  methods,
+  stats,
+  grDevices,
+  SummarizedExperiment,
+  shiny,
+  ggplot2,
+  colourpicker,
+  shinyjs,
+  shinyWidgets,
+  DT,
+  data.table,
+  shinyBS
