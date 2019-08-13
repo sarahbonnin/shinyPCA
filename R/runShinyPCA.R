@@ -7,8 +7,10 @@
 #'
 #' @import shiny ggplot2 colourpicker shinyjs shinyWidgets DT data.table shinyBS
 #' 
-#' @examples
+#' @examples 
+#' \dontrun{
 #' runShinyPCA()
+#' }
 
 runShinyPCA <- function() {
   options(shiny.maxRequestSize=8000*1024^2) # sets the max file to load to 100Mb
@@ -95,7 +97,7 @@ runShinyPCA <- function() {
       inFile <- input$sample_table
       if (is.null(inFile))
         return(NULL)
-      read.table(inFile$datapath, sep="\t", header=T, as.is=T)
+      utils::read.table(inFile$datapath, sep="\t", header=T, as.is=T)
     })
     
     observe({
@@ -209,7 +211,7 @@ runShinyPCA <- function() {
       colnames(pca3) <- pca_sample_names1
       
       # Performs principal component analysis on data
-      pca <- prcomp(t(pca3))
+      pca <- stats::prcomp(t(pca3))
       # Retrieve the percentages of variation for each component
       percentVar <- pca$sdev^2 / sum( pca$sdev^2 )
       
@@ -297,10 +299,10 @@ runShinyPCA <- function() {
           paste0(Sys.Date(), "_", gsub(" ", "_", input$name_png), "_PCA.png")
         },
         content = function(file){
-          png(file, width=input$width_png, height=input$height_png) # picking up correct file name in Chrome only...
+          grDevices::png(file, width=input$width_png, height=input$height_png) # picking up correct file name in Chrome only...
           p <- drawPCA()
           print(p)
-          dev.off()
+          grDevices::dev.off()
         }
       )
       # Update "doPCA" button label
@@ -314,5 +316,5 @@ runShinyPCA <- function() {
   
   # Run the application 
   shinyApp(ui = ui, server = server)
-  # runApp(launch.browser=TRUE)
+  #runApp(launch.browser=TRUE)
 }

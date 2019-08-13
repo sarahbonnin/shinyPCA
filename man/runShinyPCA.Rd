@@ -13,5 +13,7 @@ Shiny App
 R Shiny Application for Principal Component Analysis
 }
 \examples{
+\dontrun{
 runShinyPCA()
+}
 }
